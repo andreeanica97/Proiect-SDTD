@@ -32,9 +32,9 @@ void setup()
   
   xTaskCreate(MyTask1, "Task1", 100, NULL, 1, NULL);  // primul proces;
   xTaskCreate(MyTask2, "Task2", 100, NULL, 1, NULL);  // al doilea proces;
-  xTaskCreate(MyTask3, "Task2", 100, NULL, 2, NULL);  // al treilea proces;
-  xTaskCreate(MyTask4, "Task2", 100, NULL, 2, NULL);  // al patrulea proces;
-  xTaskCreate(MyTask5, "Task2", 100, NULL, 2, NULL);  // al cincilea proces;
+  xTaskCreate(MyTask3, "Task3", 100, NULL, 2, NULL);  // al treilea proces;
+  xTaskCreate(MyTask4, "Task4", 100, NULL, 2, NULL);  // al patrulea proces;
+  xTaskCreate(MyTask5, "Task5", 100, NULL, 2, NULL);  // al cincilea proces;
 
 }
 
@@ -94,7 +94,6 @@ static void MyTask3(void* pvParameters) // definire al treilea proces;
       digitalWrite(13, HIGH); // led verde on;
       sound = 200; // Hz note c;
       tone(buzzer, sound, 300); // primul argument din paranteza - pin-ul buzzerului, al doilea - frecventa sunetului din buzzer, al treilea - durata unui bipait al buzzer-ului)
-      delay(700);
     }
     
     else if (distance <= 20 && distance >= 10 ) //daca distanta intre 20 si 10 cm -> led GALBEN ON si buzzer activ;
@@ -104,7 +103,6 @@ static void MyTask3(void* pvParameters) // definire al treilea proces;
       digitalWrite(13, LOW);
       sound = 200; //Hz note f;
       tone(buzzer, sound, 250);
-      delay(350);
     } 
     
     else if (distance < 10 && distance > 0 ) // daca distanta < 10 cm -> led ROSU ON si buzzer activ;
@@ -114,7 +112,6 @@ static void MyTask3(void* pvParameters) // definire al treilea proces;
       digitalWrite(13, LOW);
       sound = 200; // Hz note C;
       tone(buzzer, sound, 150);
-      delay(200);
     }
     
     vTaskDelay(150 / portTICK_PERIOD_MS);
@@ -140,7 +137,6 @@ static void MyTask4(void* pvParameters) // definire al patrulea proces;
       digitalWrite(7, LOW);
       sound = 500;//Hz note c
       tone(buzzer, sound, 300); // buzzer = nr pin buzzer, sound = frecventa sunetului din buzzer, 300 = durata unui sunet al buzzer-ului);
-      delay(700);
     }
     else if (distance2 <= 20 && distance2 >= 10 ) // daca distanta intre 20 si 10 cm -> led GALBEN ON si buzzer activ;
     {
@@ -149,7 +145,6 @@ static void MyTask4(void* pvParameters) // definire al patrulea proces;
       digitalWrite(7, LOW);
       sound = 500; //Hz note f
       tone(buzzer, sound, 250);
-      delay(350);
     } 
     
     else if (distance2 < 10 && distance2 > 0 ) // daca distanta <10 cm -> led ROSU ON si buzzer activ;
@@ -159,7 +154,6 @@ static void MyTask4(void* pvParameters) // definire al patrulea proces;
       digitalWrite(7, HIGH);
       sound = 500; // Hz note C;
       tone(buzzer, sound, 150);
-      delay(200);
     }
 
     vTaskDelay(150 / portTICK_PERIOD_MS);
@@ -178,7 +172,7 @@ static void MyTask5(void* pvParameters) // definire al cincilea proces;
     Serial.print("Distanta masurata in spate(cm): ");    
     Serial.print(distance2); // afisare distanta(cm);
     Serial.println(" ");
-    delay(1000);
+    
     vTaskDelay(150 / portTICK_PERIOD_MS);
   }
 }
